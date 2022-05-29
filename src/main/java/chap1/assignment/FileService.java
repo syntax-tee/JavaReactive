@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class FileService {
 
@@ -16,8 +17,8 @@ public class FileService {
        return Mono.fromSupplier(() -> readFile(filename));
     }
 
-    public static Mono<Void> write(String filename,String content) {
-        return Mono.fromRunnable(() -> writeFile(filename,content));
+    public static Mono<Void> write(String filename, List<String> content) {
+        return Mono.fromRunnable(() -> writeFile(filename,content.toString()));
     }
 
     public static Mono<Void> delete(String filename) {

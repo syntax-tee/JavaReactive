@@ -32,7 +32,6 @@ public class DefaultSubscriber implements Subscriber<Object> {
 
     @Override
     public void onComplete() {
-        System.out.println(name + "OnComplete: ");
-
+        System.out.println(name + "Completed: ");
     }
 }
