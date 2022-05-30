@@ -39,6 +39,6 @@ public class Util {
     }
 
     public static  Subscriber<Object> subscriber(String name){
-        return new  DefaultSubscriber();
+        return new  DefaultSubscriber(name);
     }
 }
