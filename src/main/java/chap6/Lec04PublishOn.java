@@ -19,6 +19,7 @@ public class Lec04PublishOn {
 
         flux.publishOn(Schedulers.boundedElastic())
                 .doOnNext(i -> printThreadName("next " + i))
+                .publishOn(Schedulers.parallel())
                 .subscribe(v -> printThreadName("sub " + v));
 
         Util.sleepSeconds(5);
