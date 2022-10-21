@@ -10,7 +10,7 @@ public class Lec05CombineLatest {
     public static void main(String[] args) {
       Flux.combineLatest(getNumber(),getString(),(i,s)-> s + i).subscribe(Util.subscriber());
 
-      Util.sleepSeconds(10);
+      Util.sleepSeconds(5);
 
     }
 

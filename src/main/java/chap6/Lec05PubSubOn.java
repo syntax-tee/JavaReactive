@@ -5,30 +5,30 @@ import reactor.core.scheduler.Schedulers;
 import utility.Util;
 
 public class Lec05PubSubOn {
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        Flux<Object> flux = Flux.create(fluxSink -> {
-                    printThreadName("create");
-                    for (int i = 0; i < 4; i++) {
-                        fluxSink.next(i);
-                    }
-                    fluxSink.complete();
-                })
-                .doOnNext(i -> printThreadName("next " + i));
-
-
-        flux
-                .publishOn(Schedulers.parallel())
-                .doOnNext(i -> printThreadName("next " + i))
-                .subscribeOn(Schedulers.boundedElastic())
-                .subscribe(v -> printThreadName("sub " + v));
+		Flux<Object> flux = Flux.create(fluxSink -> {
+					printThreadName("create");
+					for (int i = 0; i < 4; i++) {
+						fluxSink.next(i);
+					}
+					fluxSink.complete();
+				})
+				.doOnNext(i -> printThreadName("next " + i));
 
 
-        Util.sleepSeconds(5);
+		flux
+				.publishOn(Schedulers.parallel())
+				.doOnNext(i -> printThreadName("next " + i))
+				.subscribeOn(Schedulers.boundedElastic())
+				.subscribe(v -> printThreadName("sub " + v));
 
-    }
 
-    private static void printThreadName(String msg){
-        System.out.println(msg + "\t\t: Thread : " + Thread.currentThread().getName());
-    }
+		Util.sleepSeconds(5);
+
+	}
+
+	private static void printThreadName(String msg) {
+		System.out.println(msg + "\t\t: Thread : " + Thread.currentThread().getName());
+	}
 }
